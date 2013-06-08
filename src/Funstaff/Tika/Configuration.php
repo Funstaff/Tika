@@ -22,18 +22,19 @@ class Configuration implements ConfigurationInterface
     protected $outputFormat = 'xml';
     protected $outputMetadataFormat = 'json';
     protected $outputEncoding = 'UTF8';
+    protected $metadataOnly = false;
 
     public function __construct($tikaPath)
     {
         $this->tikaPath = $tikaPath;
     }
 
-    function getTikaBinaryPath()
+    public function getTikaBinaryPath()
     {
         return $this->tikaPath;
     }
 
-    function setOutputFormat($format)
+    public function setOutputFormat($format)
     {
         $output = array('xml', 'html', 'text', 'text-main');
         if (!in_array($format, $output)) {
@@ -47,12 +48,24 @@ class Configuration implements ConfigurationInterface
         return $this;
     }
 
-    function getOutputFormat()
+    public function getOutputFormat()
     {
         return $this->outputFormat;
     }
 
-    function setOutputMetadataFormat($format)
+    public function setMetadataOnly($metadata = false)
+    {
+        $this->metadataOnly = (bool) $metadata;
+
+        return $this;
+    }
+
+    public function getMetadataOnly()
+    {
+        return $this->metadataOnly;
+    }
+
+    public function setOutputMetadataFormat($format)
     {
         $output = array('json', 'xmp');
         if (!in_array($format, $output)) {
@@ -66,19 +79,19 @@ class Configuration implements ConfigurationInterface
         return $this;
     }
 
-    function getOutputMetadataFormat()
+    public function getOutputMetadataFormat()
     {
         return $this->outputMetadataFormat;
     }
 
-    function setOutputEncoding($encoding)
+    public function setOutputEncoding($encoding)
     {
         $this->outputEncoding = $encoding;
 
         return $this;
     }
 
-    function getOutputEncoding()
+    public function getOutputEncoding()
     {
         return $this->outputEncoding;
     }

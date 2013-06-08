@@ -48,6 +48,13 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         }
         $this->fail('Invalid Output format');
     }
+    
+    public function testMetadataOnly()
+    {
+        $this->assertFalse($this->config->getMetadataOnly());
+        $this->config->setMetadataOnly(true);
+        $this->assertTrue($this->config->getMetadataOnly());
+    }
 
     public function testOutputMetadataFormat()
     {

@@ -21,6 +21,8 @@ interface ConfigurationInterface
     function getTikaBinaryPath();
     function setOutputFormat($format);
     function getOutputFormat();
+    function setMetadataOnly($metadata);
+    function getMetadataOnly();
     function setOutputMetadataFormat($format);
     function getOutputMetadataFormat();
     function setOutputEncoding($encoding);
