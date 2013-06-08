@@ -58,7 +58,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 
     public function testOutputMetadataFormat()
     {
-        $this->assertEquals('json', $this->config->getOutputMetadataFormat());
+        $this->assertEquals('text', $this->config->getOutputMetadataFormat());
         $this->config->setOutputMetadataFormat('xmp');
         $this->assertEquals('xmp', $this->config->getOutputMetadataFormat());
     }

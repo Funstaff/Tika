@@ -20,7 +20,7 @@ class Configuration implements ConfigurationInterface
 {
     protected $tikaPath;
     protected $outputFormat = 'xml';
-    protected $outputMetadataFormat = 'json';
+    protected $outputMetadataFormat = 'text';
     protected $outputEncoding = 'UTF8';
     protected $metadataOnly = false;
 
@@ -67,7 +67,7 @@ class Configuration implements ConfigurationInterface
 
     public function setOutputMetadataFormat($format)
     {
-        $output = array('json', 'xmp');
+        $output = array('text', 'json', 'xmp');
         if (!in_array($format, $output)) {
             throw new \InvalidArgumentException(sprintf(
                 'Available output Metadata format: %s',
