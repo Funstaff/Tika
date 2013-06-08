@@ -27,6 +27,11 @@ class Configuration implements ConfigurationInterface
     public function __construct($tikaPath)
     {
         $this->tikaPath = $tikaPath;
+        if (!file_exists($tikaPath)) {
+            throw new \InvalidArgumentException(
+                'The Tika binary does not exists.'
+            );
+        }
     }
 
     public function getTikaBinaryPath()

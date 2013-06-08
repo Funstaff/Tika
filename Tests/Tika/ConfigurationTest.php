@@ -24,12 +24,22 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->config = new Configuration('/bin/tika.jar');
+        $this->config = new Configuration(__DIR__.'/../../tika.jar');
+    }
+
+    public function testFailedTikaBinaryPath()
+    {
+        try {
+            $config = new Configuration('/tika.jar');
+        } catch (\InvalidArgumentException $e) {
+            return;
+        }
+        $this->fail('Tika binary does not exists on this path.');
     }
 
     public function testTikaBinaryPath()
     {
-        $this->assertEquals('/bin/tika.jar', $this->config->getTikaBinaryPath());
+        $this->assertEquals(__DIR__.'/../../tika.jar', $this->config->getTikaBinaryPath());
     }
 
     public function testOutputFormat()
