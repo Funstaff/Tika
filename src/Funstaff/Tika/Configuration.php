@@ -19,18 +19,27 @@ namespace Funstaff\Tika;
 class Configuration implements ConfigurationInterface
 {
     protected $tikaPath;
+    protected $javaPath;
     protected $outputFormat = 'xml';
     protected $outputMetadataFormat = 'text';
     protected $outputEncoding = 'UTF8';
     protected $metadataOnly = false;
 
-    public function __construct($tikaPath)
+    public function __construct($tikaPath, $javaPath = null)
     {
         $this->tikaPath = $tikaPath;
         if (!file_exists($tikaPath)) {
-            throw new \InvalidArgumentException(
-                'The Tika binary does not exists.'
-            );
+            throw new \InvalidArgumentException(sprintf(
+                'The Tika binary "%s" does not exists.',
+                $tikaPath
+            ));
+        }
+
+        if ($javaPath && !file_exists($javaPath)) {
+            throw new \InvalidArgumentException(sprintf(
+                'The java binary "%s" does not exists.',
+                $javaPath
+            ));
         }
     }
 

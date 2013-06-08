@@ -37,6 +37,16 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $this->fail('Tika binary does not exists on this path.');
     }
 
+    public function testFailedJavaBinaryPath()
+    {
+        try {
+            new Configuration(__DIR__.'/../../tika.jar', '/java');
+        } catch (\InvalidArgumentException $e) {
+            return;
+        }
+        $this->fail('Java binary does not exists on this path.');
+    }
+
     public function testTikaBinaryPath()
     {
         $this->assertEquals(__DIR__.'/../../tika.jar', $this->config->getTikaBinaryPath());
