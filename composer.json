@@ -1,0 +1,20 @@
+{
+    "name": "funstaff/tika",
+    "type": "library",
+    "description": "libs for tika wrapper",
+    "homepage": "https://github.com/Funstaff/Tika/",
+    "keywords": ["tika"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bertrand Zuchuat",
+            "email": "bertrand.zuchuat@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2"
+    },
+    "autoload": {
+        "psr-0": { "Funstaff\\Tika": "src/Tika" }
+    }
+}
