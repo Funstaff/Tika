@@ -48,7 +48,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         }
         $this->fail('Invalid Output format');
     }
-    
+
     public function testMetadataOnly()
     {
         $this->assertFalse($this->config->getMetadataOnly());
@@ -62,7 +62,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $this->config->setOutputMetadataFormat('xmp');
         $this->assertEquals('xmp', $this->config->getOutputMetadataFormat());
     }
-    
+
     public function testFailedOutputMetadataFormat()
     {
         try {
@@ -72,7 +72,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         }
         $this->fail('Invalid Output metadata format');
     }
-    
+
     public function testOutputEncoding()
     {
         $this->assertEquals('UTF8', $this->config->getOutputEncoding());
