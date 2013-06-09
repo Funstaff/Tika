@@ -11,6 +11,8 @@
 
 namespace Funstaff\Tika;
 
+use Symfony\Component\HttpKernel\Log\LoggerInterface;
+
 /**
  * Wrapper
  *
@@ -18,6 +20,7 @@ namespace Funstaff\Tika;
  */
 class Wrapper implements WrapperInterface
 {
+    protected $logger;
     protected $config;
     protected $document;
 
@@ -39,6 +42,16 @@ class Wrapper implements WrapperInterface
     public function getConfiguration()
     {
         return $this->config;
+    }
+
+    /**
+     * Set Logger
+     *
+     * @param LoggerInterface $logger
+     */
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
     }
 
     /**
@@ -124,6 +137,12 @@ class Wrapper implements WrapperInterface
                 $command = $base;
             }
             $command = sprintf('%s %s', $command, $doc->getPath());
+            if ($this->logger) {
+                $this->logger->addInfo(sprintf(
+                'Tika command: "%s"',
+                $command
+                ));
+            }
             passthru($command);
             $content = ob_get_clean();
             if ($this->config->getMetadataOnly()) {
