@@ -20,6 +20,7 @@ class Configuration implements ConfigurationInterface
 {
     protected $tikaPath;
     protected $javaPath;
+    protected $metadataClass = 'Funstaff\Tika\Metadata';
     protected $outputFormat = 'xml';
     protected $outputMetadataFormat = 'text';
     protected $outputEncoding = 'UTF8';
@@ -51,6 +52,18 @@ class Configuration implements ConfigurationInterface
     public function getJavaBinaryPath()
     {
         return $this->javaPath;
+    }
+
+    public function setMetadataClass($class)
+    {
+        $this->metadataClass = $class;
+
+        return $this;
+    }
+
+    public function getMetadataClass()
+    {
+        return $this->metadataClass;
     }
 
     public function setOutputFormat($format)

@@ -57,6 +57,13 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($this->config->getJavaBinaryPath());
     }
 
+    public function testMetadataClass()
+    {
+        $this->assertEquals('Funstaff\Tika\Metadata', $this->config->getMetadataClass());
+        $this->config->setMetadataClass('Funstaff\Tika\MetaFoo');
+        $this->assertEquals('Funstaff\Tika\MetaFoo', $this->config->getMetadataClass());
+    }
+
     public function testOutputFormat()
     {
         $this->assertEquals('xml', $this->config->getOutputFormat());
