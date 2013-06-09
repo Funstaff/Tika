@@ -71,7 +71,7 @@ class Wrapper implements WrapperInterface
         }
     }
 
-    public function extractContent()
+    public function execute()
     {
         ob_start();
         $base = $this->generateCommand();

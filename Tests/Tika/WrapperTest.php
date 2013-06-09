@@ -63,23 +63,23 @@ class WrapperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(2, count($this->wrapper->getDocument()));
     }
 
-    public function testExtractContent()
+    public function testExecute()
     {
         $filePath = __DIR__.'/../File/test.pdf';
         $doc = new Document('test.pdf', $filePath);
         $this->wrapper->addDocument($doc);
-        $this->wrapper->setParameter('outputFormat', 'xml')->extractContent();
+        $this->wrapper->setParameter('outputFormat', 'xml')->execute();
         $document = $this->wrapper->getDocument('test.pdf');
         $this->assertInstanceOf('Funstaff\Tika\DocumentInterface', $document);
         $this->assertInstanceOf('Funstaff\Tika\MetadataInterface', $document->getMetadata());
     }
 
-    public function testExtractTextNoMetadataContent()
+    public function testExecuteTextNoMetadataContent()
     {
         $filePath = __DIR__.'/../File/test.pdf';
         $doc = new Document('test.pdf', $filePath);
         $this->wrapper->addDocument($doc);
-        $this->wrapper->setParameter('outputFormat', 'text')->extractContent();
+        $this->wrapper->setParameter('outputFormat', 'text')->execute();
         $document = $this->wrapper->getDocument('test.pdf');
         $this->assertNull($document->getMetadata());
     }
