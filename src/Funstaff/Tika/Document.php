@@ -24,6 +24,13 @@ class Document implements DocumentInterface
     protected $metadata;
     protected $content;
 
+    /**
+     * Construct
+     *
+     * @param $name Name of document
+     * @param $path Path of document
+     * @param $password Password for encrypted document
+     */
     public function __construct($name, $path, $password = null)
     {
         $this->name = $name;
@@ -38,21 +45,43 @@ class Document implements DocumentInterface
         }
     }
 
+    /**
+     * Get Name
+     *
+     * @return string   name of document
+     */
     public function getName()
     {
         return $this->name;
     }
 
+    /**
+     * Get Path
+     *
+     * @return string   path of document
+     */
     public function getPath()
     {
         return $this->path;
     }
 
+    /**
+     * Get Password
+     *
+     * @return string   password of document
+     */
     public function getPassword()
     {
         return $this->password;
     }
 
+    /**
+     * Set Metadata
+     *
+     * @param $metadata Funstaff\Tika\MetadataInterface
+     *
+     * @return Funstaff\Tika\DocumentInterface
+     */
     public function setMetadata(MetadataInterface $metadata)
     {
         $this->metadata = $metadata;
@@ -60,11 +89,21 @@ class Document implements DocumentInterface
         return $this;
     }
 
+    /**
+     * Get Metadata
+     *
+     * @return Funstaff\Tika\MetadataInterface
+     */
     public function getMetadata()
     {
         return $this->metadata;
     }
-    
+
+    /**
+     * Set Content
+     *
+     * @param string $content   Content of document
+     */
     public function setContent($content)
     {
         $this->content = $content;
@@ -72,6 +111,11 @@ class Document implements DocumentInterface
         return $this;
     }
 
+    /**
+     * Get Content
+     *
+     * @return string content of document
+     */
     public function getContent()
     {
         return $this->content;

@@ -21,16 +21,35 @@ class Wrapper implements WrapperInterface
     protected $config;
     protected $document;
 
+    /**
+     * Constructor
+     * 
+     * @param Funstaff\Tika\ConfigurationInterface $config
+     */
     public function __construct(ConfigurationInterface $config)
     {
         $this->config = $config;
     }
 
+    /**
+     * Get Configuration
+     *
+     * @return Funstaff\Tika\ConfigurationInterface
+     */
     public function getConfiguration()
     {
         return $this->config;
     }
 
+    /**
+     * Set Parameter
+     * Override default configuration
+     *
+     * @param string $name  configuration parameter
+     * @param string $value
+     *
+     * @return Funstaff\Tika\Configuration
+     */
     public function setParameter($name, $value)
     {
         if (!isset($ref)) {
@@ -48,6 +67,13 @@ class Wrapper implements WrapperInterface
         return $this;
     }
 
+    /**
+     * Add document
+     *
+     * @param Funstaff\Tika\DocumentInterface
+     *
+     * @return Funstaff\Tika\Configuration
+     */
     public function addDocument(DocumentInterface $doc)
     {
         $this->document[$doc->getName()] = $doc;
@@ -55,6 +81,13 @@ class Wrapper implements WrapperInterface
         return $this;
     }
 
+    /**
+     * Get Document
+     * 
+     * @param string|null $name name of document
+     *
+     * @return DocumentInterface or array
+     */
     public function getDocument($name = null)
     {
         if ($name) {
@@ -71,6 +104,9 @@ class Wrapper implements WrapperInterface
         }
     }
 
+    /**
+     * Execute
+     */
     public function execute()
     {
         ob_start();
@@ -96,6 +132,11 @@ class Wrapper implements WrapperInterface
         }
     }
 
+    /**
+     * Generate Command
+     *
+     * @return string $command
+     */
     private function generateCommand()
     {
         $java = $this->config->getJavaBinaryPath() ? : 'java';
@@ -116,6 +157,11 @@ class Wrapper implements WrapperInterface
         return $command;
     }
 
+    /**
+     * Metadata Flag
+     *
+     * @return string $flag
+     */
     private function metadataFlag()
     {
         $flag = $this->config->getOutputMetadataFormat();
@@ -125,7 +171,13 @@ class Wrapper implements WrapperInterface
 
         return $flag;
     }
-    
+
+    /**
+     * Load document
+     *
+     * @param DocumentInterface $doc
+     * @param string $content
+     */
     private function loadDocument($doc, $content)
     {
         $dom = new \DomDocument('1.0', $this->config->getOutputEncoding());
@@ -146,7 +198,7 @@ class Wrapper implements WrapperInterface
             }
             $doc->setMetadata($metadata);
         }
-        
+
         $body = $dom->getElementsByTagName('body');
         if ($body) {
             $content = $body->item(0)->nodeValue;

@@ -26,6 +26,12 @@ class Configuration implements ConfigurationInterface
     protected $outputEncoding = 'UTF8';
     protected $metadataOnly = false;
 
+    /**
+     * Constructor
+     *
+     * @param string $tikaPath  Path of tika binary
+     * @param string $javaPath  Path of java binary
+     */
     public function __construct($tikaPath, $javaPath = null)
     {
         $this->tikaPath = $tikaPath;
@@ -44,16 +50,31 @@ class Configuration implements ConfigurationInterface
         }
     }
 
+    /**
+     * Get Tika Binary Path
+     *
+     * @return $tikaPath    Path of tika binary
+     */
     public function getTikaBinaryPath()
     {
         return $this->tikaPath;
     }
 
+    /**
+     * Get Java Binary Path
+     *
+     * @return $javaPath    Path of java binary
+     */
     public function getJavaBinaryPath()
     {
         return $this->javaPath;
     }
 
+    /**
+     * Set Metadata Class
+     *
+     * @param string $class    FQN for metadata class
+     */
     public function setMetadataClass($class)
     {
         $this->metadataClass = $class;
@@ -61,11 +82,23 @@ class Configuration implements ConfigurationInterface
         return $this;
     }
 
+    /**
+     * Get Metadata Class
+     *
+     * @param string $metadataClass FQN for metadata class
+     */
     public function getMetadataClass()
     {
         return $this->metadataClass;
     }
 
+    /**
+     * Set Output Format
+     *
+     * @param string $format
+     *
+     * @return Funstaff\Tika\ConfigurationInterface
+     */
     public function setOutputFormat($format)
     {
         $output = array('xml', 'html', 'text', 'text-main');
@@ -80,11 +113,23 @@ class Configuration implements ConfigurationInterface
         return $this;
     }
 
+    /**
+     * Get Output Format
+     *
+     * @return $string  Output format
+     */
     public function getOutputFormat()
     {
         return $this->outputFormat;
     }
 
+    /**
+     * Set MetadataOnly
+     *
+     * @param boolean $metadata
+     *
+     * @return Funstaff\Tika\ConfigurationInterface
+     */
     public function setMetadataOnly($metadata = false)
     {
         $this->metadataOnly = (bool) $metadata;
@@ -92,11 +137,23 @@ class Configuration implements ConfigurationInterface
         return $this;
     }
 
+    /**
+     * Get MetadataOnly
+     *
+     * @return boolean $metadataOnly
+     */
     public function getMetadataOnly()
     {
         return $this->metadataOnly;
     }
 
+    /**
+     * Set Output Metadata Format
+     *
+     * @param string $format
+     *
+     * @return Funstaff\Tika\ConfigurationInterface
+     */
     public function setOutputMetadataFormat($format)
     {
         $output = array('text', 'json', 'xmp');
@@ -111,11 +168,23 @@ class Configuration implements ConfigurationInterface
         return $this;
     }
 
+    /**
+     * Get Output Metadata Format
+     *
+     * @return string $outputMetadataFormat
+     */
     public function getOutputMetadataFormat()
     {
         return $this->outputMetadataFormat;
     }
 
+    /**
+     * Set Output Encoding
+     *
+     * @param string $encoding
+     *
+     * @return Funstaff\Tika\ConfigurationInterface
+     */
     public function setOutputEncoding($encoding)
     {
         $this->outputEncoding = $encoding;
@@ -123,6 +192,11 @@ class Configuration implements ConfigurationInterface
         return $this;
     }
 
+    /**
+     * Get Output Encoding
+     *
+     * @return string $outputEncoding
+     */
     public function getOutputEncoding()
     {
         return $this->outputEncoding;

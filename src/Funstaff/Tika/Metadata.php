@@ -20,6 +20,14 @@ class Metadata implements MetadataInterface
 {
     protected $data = array();
 
+    /**
+     * Add
+     *
+     * @param string $name  name of single metadata
+     * @param string $value metadata value
+     *
+     * @return Funstaff\Tika\MetadataInterface
+     */
     public function add($name, $value)
     {
         $this->data[$name] = $value;
@@ -27,6 +35,13 @@ class Metadata implements MetadataInterface
         return $this;
     }
 
+    /**
+     * Get
+     *
+     * @param string $name  name of parameter
+     *
+     * @return string   metadata value
+     */
     public function get($name)
     {
         if (!array_key_exists($name, $this->data)) {
@@ -38,7 +53,12 @@ class Metadata implements MetadataInterface
 
         return $this->data[$name];
     }
-    
+
+    /**
+     * Get All
+     *
+     * @return array    All metadata values
+     */
     public function getAll()
     {
         return $this->data;
