@@ -31,6 +31,12 @@ $documents = $wrapper->getDocument();
 /* or only one document */
 $document = $wrapper->getDocument('doc.pdf');
 
+/* Get Document content */
+$content = $document->getContent();
+
+/* or raw content (output of Tika) */
+$content = $document->getRawContent();
+
 /* Get All Metadata for document (only on xml and html output format) */
 $metadata = $document->getMetadata();
 
