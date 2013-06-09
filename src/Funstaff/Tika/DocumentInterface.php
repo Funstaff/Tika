@@ -25,4 +25,6 @@ interface DocumentInterface
     function getMetadata();
     function setContent($content);
     function getContent();
+    function setRawContent($content);
+    function getRawContent();
 }

@@ -23,6 +23,7 @@ class Document implements DocumentInterface
     protected $password;
     protected $metadata;
     protected $content;
+    protected $raw;
 
     /**
      * Construct
@@ -119,5 +120,29 @@ class Document implements DocumentInterface
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * Get Raw Content
+     *
+     * @param string $content
+     *
+     * @return Funstaff\Tika\MetadataInterface
+     */
+    public function setRawContent($content)
+    {
+        $this->raw = $content;
+
+        return $this;
+    }
+    
+    /**
+     * Get Raw Content
+     *
+     * @return string $raw
+     */
+    public function getRawContent()
+    {
+        return $this->raw;
     }
 }

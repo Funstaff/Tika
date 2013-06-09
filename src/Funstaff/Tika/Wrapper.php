@@ -145,6 +145,7 @@ class Wrapper implements WrapperInterface
             }
             passthru($command);
             $content = ob_get_clean();
+            $doc->setRawContent($content);
             if ($this->config->getMetadataOnly()) {
                 $this->loadMetadata($doc, $content);
             } else {

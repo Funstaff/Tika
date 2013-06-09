@@ -63,4 +63,11 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
         $doc->setContent('Foo - Bar');
         $this->assertEquals('Foo - Bar', $doc->getContent());
     }
+    
+    public function testRawContent()
+    {
+        $doc = new Document('test.pdf', __DIR__.'/../File/test.pdf');
+        $doc->setRawContent('Bar');
+        $this->assertEquals('Bar', $doc->getRawContent());
+    }
 }
