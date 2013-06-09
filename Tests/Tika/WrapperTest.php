@@ -73,4 +73,14 @@ class WrapperTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Funstaff\Tika\DocumentInterface', $document);
         $this->assertInstanceOf('Funstaff\Tika\MetadataInterface', $document->getMetadata());
     }
+
+    public function testExtractTextNoMetadataContent()
+    {
+        $filePath = __DIR__.'/../File/test.pdf';
+        $doc = new Document('test.pdf', $filePath);
+        $this->wrapper->addDocument($doc);
+        $this->wrapper->setParameter('outputFormat', 'text')->extractContent();
+        $document = $this->wrapper->getDocument('test.pdf');
+        $this->assertNull($document->getMetadata());
+    }
 }
