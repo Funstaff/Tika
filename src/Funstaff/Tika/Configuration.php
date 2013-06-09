@@ -23,7 +23,7 @@ class Configuration implements ConfigurationInterface
     protected $metadataClass = 'Funstaff\Tika\Metadata';
     protected $outputFormat = 'xml';
     protected $outputMetadataFormat = 'text';
-    protected $outputEncoding = 'UTF8';
+    protected $outputEncoding = 'UTF-8';
     protected $metadataOnly = false;
 
     /**
