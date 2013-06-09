@@ -48,7 +48,7 @@ class Wrapper implements WrapperInterface
      * @param string $name  configuration parameter
      * @param string $value
      *
-     * @return Funstaff\Tika\Configuration
+     * @return Funstaff\Tika\Wrapper
      */
     public function setParameter($name, $value)
     {
@@ -72,7 +72,7 @@ class Wrapper implements WrapperInterface
      *
      * @param Funstaff\Tika\DocumentInterface
      *
-     * @return Funstaff\Tika\Configuration
+     * @return Funstaff\Tika\Wrapper
      */
     public function addDocument(DocumentInterface $doc)
     {
@@ -106,6 +106,8 @@ class Wrapper implements WrapperInterface
 
     /**
      * Execute
+     *
+     * @return Funstaff\Tika\Wrapper
      */
     public function execute()
     {
@@ -134,6 +136,8 @@ class Wrapper implements WrapperInterface
                 }
             }
         }
+
+        return $this;
     }
 
     /**
