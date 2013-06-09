@@ -48,6 +48,11 @@ class Configuration implements ConfigurationInterface
         return $this->tikaPath;
     }
 
+    public function getJavaBinaryPath()
+    {
+        return $this->javaPath;
+    }
+
     public function setOutputFormat($format)
     {
         $output = array('xml', 'html', 'text', 'text-main');

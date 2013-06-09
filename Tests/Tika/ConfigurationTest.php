@@ -51,6 +51,11 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(__DIR__.'/../../tika.jar', $this->config->getTikaBinaryPath());
     }
+    
+    public function testJavaBinaryPath()
+    {
+        $this->assertNull($this->config->getJavaBinaryPath());
+    }
 
     public function testOutputFormat()
     {
