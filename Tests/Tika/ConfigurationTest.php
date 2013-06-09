@@ -90,7 +90,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 
     public function testOutputEncoding()
     {
-        $this->assertEquals('UTF8', $this->config->getOutputEncoding());
+        $this->assertEquals('UTF-8', $this->config->getOutputEncoding());
         $this->config->setOutputEncoding('ISO-8859');
         $this->assertEquals('ISO-8859', $this->config->getOutputEncoding());
     }
