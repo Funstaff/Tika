@@ -11,7 +11,7 @@
 
 namespace Funstaff\Tika;
 
-use Symfony\Component\HttpKernel\Log\LoggerInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Wrapper
