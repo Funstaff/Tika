@@ -20,18 +20,29 @@ use Funstaff\Tika\Metadata;
  */
 class MetadataTest extends \PHPUnit_Framework_TestCase
 {
-    public function testMetadataTextFormat()
+    public function testMetadata()
     {
-        $raw = file_get_contents(__DIR__.'/../File/metadata.txt');
-        $meta = new Metadata($raw);
-        $this->assertEquals($raw, $meta->getRaw());
-        $this->assertEquals('text', $meta->getFormat());
+        $json = json_decode(file_get_contents(__DIR__.'/../File/metadata.json'));
+        $meta = new Metadata();
+        $this->assertInternalType('array', $meta->getAll());
+        $this->assertEquals(0, count($meta->getAll()));
+        $meta->add('author', $json->{'Author'});
+        $this->assertEquals(1, count($meta->getAll()));
+        $this->assertEquals('People', $meta->get('author'));
+        $meta->add('title', $json->{'dc:title'});
+        $this->assertEquals(2, count($meta->getAll()));
+        $this->assertEquals('Test pdf', $meta->get('title'));
     }
 
-    public function testMetadataJsonFormat()
+    public function testFailedMetadata()
     {
-        $raw = file_get_contents(__DIR__.'/../File/metadata.json');
-        $meta = new Metadata($raw, 'json');
-        $this->assertEquals('json', $meta->getFormat());
+        $json = json_decode(file_get_contents(__DIR__.'/../File/metadata.json'));
+        $meta = new Metadata();
+        try {
+            $meta->get('Foo');
+        } catch (\InvalidArgumentException $e) {
+            return;
+        }
+        $this->fail('The Foo key does not exists on data array');
     }
 }
