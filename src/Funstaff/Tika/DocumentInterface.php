@@ -20,6 +20,7 @@ interface DocumentInterface
 {
     function getName();
     function getPath();
+    function getPassword();
     function setMetadata(MetadataInterface $metadata);
     function getMetadata();
     function setContent($content);

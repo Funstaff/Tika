@@ -20,13 +20,15 @@ class Document implements DocumentInterface
 {
     protected $name;
     protected $path;
+    protected $password;
     protected $metadata;
     protected $content;
 
-    public function __construct($name, $path)
+    public function __construct($name, $path, $password = null)
     {
         $this->name = $name;
         $this->path = $path;
+        $this->password = $password;
         if (!file_exists($path)) {
             throw new \InvalidArgumentException(sprintf(
                 'Document "%s" with path "%s" does not exists.',
@@ -44,6 +46,11 @@ class Document implements DocumentInterface
     public function getPath()
     {
         return $this->path;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
     }
 
     public function setMetadata(MetadataInterface $metadata)

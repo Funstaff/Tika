@@ -37,6 +37,14 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
         $doc = new Document('test.pdf', $filePath);
         $this->assertEquals('test.pdf', $doc->getName());
         $this->assertEquals($filePath, $doc->getPath());
+        $this->assertNull($doc->getPassword());
+    }
+    
+    public function testPassword()
+    {
+        $filePath = __DIR__.'/../File/test.pdf';
+        $doc = new Document('test.pdf', $filePath, '123456');
+        $this->assertEquals('123456', $doc->getPassword());
     }
 
     public function testMetadata()
