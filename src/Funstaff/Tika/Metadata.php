@@ -18,22 +18,29 @@ namespace Funstaff\Tika;
  */
 class Metadata implements MetadataInterface
 {
-    protected $raw;
-    protected $format;
+    protected $data = array();
 
-    public function __construct($raw, $format = 'text')
+    public function add($name, $value)
     {
-        $this->raw = $raw;
-        $this->format = $format;
+        $this->data[$name] = $value;
+
+        return $this;
     }
 
-    public function getRaw()
+    public function get($name)
     {
-        return $this->raw;
-    }
+        if (!array_key_exists($name, $this->data)) {
+            throw new \InvalidArgumentException(sprintf(
+                'The value for "%s" does not exists.',
+                $name
+            ));
+        }
 
-    public function getFormat()
+        return $this->data[$name];
+    }
+    
+    public function getAll()
     {
-        return $this->format;
+        return $this->data;
     }
 }

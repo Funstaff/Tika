@@ -18,6 +18,6 @@ namespace Funstaff\Tika;
  */
 interface MetadataInterface
 {
-    function getRaw();
-    function getFormat();
+    function add($name, $value);
+    function get($name);
 }
