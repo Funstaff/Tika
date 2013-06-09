@@ -124,10 +124,14 @@ class Wrapper implements WrapperInterface
             $command = sprintf('%s %s', $command, $doc->getPath());
             passthru($command);
             $content = ob_get_clean();
-            if (in_array($this->config->getOutputFormat(), array('xml', 'html'))) {
-                $this->loadDocument($doc, $content);
+            if ($this->config->getMetadataOnly()) {
+                $this->loadMetadata($doc, $content);
             } else {
-                $doc->setContent($content);
+                if (in_array($this->config->getOutputFormat(), array('xml', 'html'))) {
+                    $this->loadDocument($doc, $content);
+                } else {
+                    $doc->setContent($content);
+                }
             }
         }
     }
@@ -149,27 +153,12 @@ class Wrapper implements WrapperInterface
         if (!$this->config->getMetadataOnly()) {
             $command .= ' --'.$this->config->getOutputFormat();
         } else {
-            $command .= ' --'.$this->metadataFlag();
+            $command .= ' --json';
         }
 
         $command .= sprintf(' --encoding=%s', $this->config->getOutputEncoding());
 
         return $command;
-    }
-
-    /**
-     * Metadata Flag
-     *
-     * @return string $flag
-     */
-    private function metadataFlag()
-    {
-        $flag = $this->config->getOutputMetadataFormat();
-        if ($flag == 'text') {
-            $flag = 'metadata';
-        }
-
-        return $flag;
     }
 
     /**
@@ -204,5 +193,20 @@ class Wrapper implements WrapperInterface
             $content = $body->item(0)->nodeValue;
             $doc->setContent($content);
         }
+    }
+    
+    /**
+     * load Metadata
+     */
+    private function loadMetadata($doc, $content)
+    {
+        $class = $this->config->getMetadataClass();
+        $metadata = new $class();
+
+        $metadatas = get_object_vars(json_decode($content));
+        foreach ($metadatas as $name => $value) {
+            $metadata->add($name, $value);
+        }
+        $doc->setMetadata($metadata);
     }
 }

@@ -88,23 +88,6 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->config->getMetadataOnly());
     }
 
-    public function testOutputMetadataFormat()
-    {
-        $this->assertEquals('text', $this->config->getOutputMetadataFormat());
-        $this->config->setOutputMetadataFormat('xmp');
-        $this->assertEquals('xmp', $this->config->getOutputMetadataFormat());
-    }
-
-    public function testFailedOutputMetadataFormat()
-    {
-        try {
-            $this->config->setOutputMetadataFormat('foo');
-        } catch (\InvalidArgumentException $e) {
-            return;
-        }
-        $this->fail('Invalid Output metadata format');
-    }
-
     public function testOutputEncoding()
     {
         $this->assertEquals('UTF8', $this->config->getOutputEncoding());

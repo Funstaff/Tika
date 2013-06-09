@@ -148,37 +148,6 @@ class Configuration implements ConfigurationInterface
     }
 
     /**
-     * Set Output Metadata Format
-     *
-     * @param string $format
-     *
-     * @return Funstaff\Tika\ConfigurationInterface
-     */
-    public function setOutputMetadataFormat($format)
-    {
-        $output = array('text', 'json', 'xmp');
-        if (!in_array($format, $output)) {
-            throw new \InvalidArgumentException(sprintf(
-                'Available output Metadata format: %s',
-                implode(', ', $output)
-            ));
-        }
-        $this->outputMetadataFormat = $format;
-
-        return $this;
-    }
-
-    /**
-     * Get Output Metadata Format
-     *
-     * @return string $outputMetadataFormat
-     */
-    public function getOutputMetadataFormat()
-    {
-        return $this->outputMetadataFormat;
-    }
-
-    /**
      * Set Output Encoding
      *
      * @param string $encoding

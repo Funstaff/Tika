@@ -23,8 +23,6 @@ interface ConfigurationInterface
     function getOutputFormat();
     function setMetadataOnly($metadata);
     function getMetadataOnly();
-    function setOutputMetadataFormat($format);
-    function getOutputMetadataFormat();
     function setOutputEncoding($encoding);
     function getOutputEncoding();
 }
