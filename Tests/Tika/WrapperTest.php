@@ -74,6 +74,17 @@ class WrapperTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Funstaff\Tika\MetadataInterface', $document->getMetadata());
     }
 
+    public function testExecuteWithFileWithSpace()
+    {
+        $filePath = __DIR__.'/../File/test interview.pdf';
+        $doc = new Document('test interview.pdf', $filePath);
+        $this->wrapper->addDocument($doc);
+        $this->wrapper->setParameter('outputFormat', 'xml')->execute();
+        $document = $this->wrapper->getDocument('test interview.pdf');
+        $this->assertEquals('test interview.pdf', $document->getName());
+        $this->assertEquals('recruit', $document->getMetadata()->get('subject'));
+    }
+
     public function testExecuteTextNoMetadataContent()
     {
         $filePath = __DIR__.'/../File/test.pdf';
