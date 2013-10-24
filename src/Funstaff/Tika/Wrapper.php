@@ -136,7 +136,7 @@ class Wrapper implements WrapperInterface
             } else {
                 $command = $base;
             }
-            $command = sprintf('%s %s', $command, $doc->getPath());
+            $command = sprintf('%s %s', $command, escapeshellarg($doc->getPath()));
             if ($this->logger) {
                 $this->logger->addInfo(sprintf(
                 'Tika command: "%s"',
