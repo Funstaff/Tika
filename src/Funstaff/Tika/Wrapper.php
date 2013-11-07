@@ -12,6 +12,7 @@
 namespace Funstaff\Tika;
 
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Process\Process;
 
 /**
  * Wrapper
@@ -26,7 +27,7 @@ class Wrapper implements WrapperInterface
 
     /**
      * Constructor
-     * 
+     *
      * @param Funstaff\Tika\ConfigurationInterface $config
      */
     public function __construct(ConfigurationInterface $config)
@@ -96,7 +97,7 @@ class Wrapper implements WrapperInterface
 
     /**
      * Get Document
-     * 
+     *
      * @param string|null $name name of document
      *
      * @return DocumentInterface or array
@@ -124,7 +125,6 @@ class Wrapper implements WrapperInterface
      */
     public function execute()
     {
-        ob_start();
         $base = $this->generateCommand();
         foreach ($this->document as $name => $doc) {
             if ($doc->getPassword()) {
@@ -143,8 +143,16 @@ class Wrapper implements WrapperInterface
                 $command
                 ));
             }
-            passthru($command);
-            $content = ob_get_clean();
+
+            $process = new Process($command);
+            $process->run();
+
+            if (!$process->isSuccessful()) {
+                throw new \InvalidArgumentException($process->getErrorOutput());
+            }
+
+            $content = $process->getIncrementalOutput();
+
             $doc->setRawContent($content);
             if ($this->config->getMetadataOnly()) {
                 $this->loadMetadata($doc, $content);
@@ -218,7 +226,7 @@ class Wrapper implements WrapperInterface
             $doc->setContent($content);
         }
     }
-    
+
     /**
      * load Metadata
      */
