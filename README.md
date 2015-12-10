@@ -49,4 +49,4 @@ Credits
 -------
 To all users that gave feedback and committed code [https://github.com/Funstaff/Tika](https://github.com/Funstaff/Tika).
 
-© 2013 Bertrand Zuchuat - Funstaff
+© Bertrand Zuchuat - Funstaff
