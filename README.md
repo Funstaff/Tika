@@ -4,6 +4,15 @@ Master: [![Build Status](https://travis-ci.org/Funstaff/Tika.png?branch=master)]
 
 A wrapper php for [Tika binary](http://tika.apache.org)
 
+Installation
+------------
+
+To install tika with Composer just run:
+
+```bash
+$ php composer.phar require funstaff/tika dev-master
+```
+
 Usage
 -----
 
