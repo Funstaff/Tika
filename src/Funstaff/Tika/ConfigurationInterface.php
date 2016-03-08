@@ -25,4 +25,6 @@ interface ConfigurationInterface
     function getMetadataOnly();
     function setOutputEncoding($encoding);
     function getOutputEncoding();
+    function getMetadataClass();
+    function getJavaBinaryPath();
 }
