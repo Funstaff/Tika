@@ -190,7 +190,7 @@ class Wrapper implements WrapperInterface
     {
         $java = $this->config->getJavaBinaryPath() ? : 'java';
         $command = sprintf(
-            '%s -jar %s',
+            '%s -Djava.awt.headless=true -jar %s',
             $java,
             $this->config->getTikaBinaryPath()
         );
