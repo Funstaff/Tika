@@ -21,4 +21,5 @@ interface WrapperInterface
     function addDocument(DocumentInterface $doc);
     function getDocument($name = null);
     function execute();
+    function unsetDocuments();
 }

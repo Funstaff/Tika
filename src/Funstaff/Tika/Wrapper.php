@@ -259,4 +259,16 @@ class Wrapper implements WrapperInterface
         }
         $doc->setMetadata($metadata);
     }
+
+    /**
+     * Clear list of documents to process
+     *
+     * @return WrapperInterface
+     */
+    public function unsetDocuments()
+    {
+        $this->document = array();
+
+        return $this;
+    }
 }
