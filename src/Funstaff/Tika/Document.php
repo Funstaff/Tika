@@ -28,9 +28,9 @@ class Document implements DocumentInterface
     /**
      * Construct
      *
-     * @param $name Name of document
-     * @param $path Path of document
-     * @param $password Password for encrypted document
+     * @param string $name Name of document
+     * @param string $path Path of document
+     * @param string $password Password for encrypted document
      */
     public function __construct($name, $path, $password = null)
     {
@@ -79,9 +79,9 @@ class Document implements DocumentInterface
     /**
      * Set Metadata
      *
-     * @param $metadata Funstaff\Tika\MetadataInterface
+     * @param $metadata MetadataInterface
      *
-     * @return Funstaff\Tika\DocumentInterface
+     * @return DocumentInterface
      */
     public function setMetadata(MetadataInterface $metadata)
     {
@@ -93,7 +93,7 @@ class Document implements DocumentInterface
     /**
      * Get Metadata
      *
-     * @return Funstaff\Tika\MetadataInterface
+     * @return MetadataInterface
      */
     public function getMetadata()
     {
@@ -104,6 +104,8 @@ class Document implements DocumentInterface
      * Set Content
      *
      * @param string $content   Content of document
+     *
+     * @return MetadataInterface
      */
     public function setContent($content)
     {
@@ -127,7 +129,7 @@ class Document implements DocumentInterface
      *
      * @param string $content
      *
-     * @return Funstaff\Tika\MetadataInterface
+     * @return MetadataInterface
      */
     public function setRawContent($content)
     {
@@ -139,7 +141,7 @@ class Document implements DocumentInterface
     /**
      * Get Raw Content
      *
-     * @return string $raw
+     * @return string raw content
      */
     public function getRawContent()
     {

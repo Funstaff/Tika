@@ -53,7 +53,7 @@ class Configuration implements ConfigurationInterface
     /**
      * Get Tika Binary Path
      *
-     * @return $tikaPath    Path of tika binary
+     * @return string    Path of tika binary
      */
     public function getTikaBinaryPath()
     {
@@ -63,7 +63,7 @@ class Configuration implements ConfigurationInterface
     /**
      * Get Java Binary Path
      *
-     * @return $javaPath    Path of java binary
+     * @return string    Path of java binary
      */
     public function getJavaBinaryPath()
     {
@@ -74,6 +74,8 @@ class Configuration implements ConfigurationInterface
      * Set Metadata Class
      *
      * @param string $class    FQN for metadata class
+     *
+     * @return ConfigurationInterface
      */
     public function setMetadataClass($class)
     {
@@ -85,7 +87,7 @@ class Configuration implements ConfigurationInterface
     /**
      * Get Metadata Class
      *
-     * @param string $metadataClass FQN for metadata class
+     * @return MetadataInterface
      */
     public function getMetadataClass()
     {
@@ -97,7 +99,7 @@ class Configuration implements ConfigurationInterface
      *
      * @param string $format
      *
-     * @return Funstaff\Tika\ConfigurationInterface
+     * @return ConfigurationInterface
      */
     public function setOutputFormat($format)
     {
@@ -116,7 +118,7 @@ class Configuration implements ConfigurationInterface
     /**
      * Get Output Format
      *
-     * @return $string  Output format
+     * @return string  Output format
      */
     public function getOutputFormat()
     {
@@ -128,7 +130,7 @@ class Configuration implements ConfigurationInterface
      *
      * @param boolean $metadata
      *
-     * @return Funstaff\Tika\ConfigurationInterface
+     * @return ConfigurationInterface
      */
     public function setMetadataOnly($metadata = false)
     {
@@ -152,7 +154,7 @@ class Configuration implements ConfigurationInterface
      *
      * @param string $encoding
      *
-     * @return Funstaff\Tika\ConfigurationInterface
+     * @return ConfigurationInterface
      */
     public function setOutputEncoding($encoding)
     {
