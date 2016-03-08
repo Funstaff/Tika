@@ -21,8 +21,19 @@ use Symfony\Component\Process\Process;
  */
 class Wrapper implements WrapperInterface
 {
+    /**
+     * @var LoggerInterface
+     */
     protected $logger;
+
+    /**
+     * @var ConfigurationInterface
+     */
     protected $config;
+
+    /**
+     * @var array
+     */
     protected $document;
 
     /**
@@ -33,6 +44,7 @@ class Wrapper implements WrapperInterface
     public function __construct(ConfigurationInterface $config)
     {
         $this->config = $config;
+        $this->document = array();
     }
 
     /**
