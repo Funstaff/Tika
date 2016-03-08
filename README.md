@@ -26,7 +26,7 @@ use Funstaff\Tika\Wrapper;
 $config = new Configuration('/path/to/tika.jar');
 $config
     ->setOutputFormat('html')
-    ->setOutputEncoding('UTF8');
+    ->setOutputEncoding('UTF-8');
 
 $wrapper = new Wrapper($config);
 $wrapper
