@@ -51,11 +51,10 @@ class WrapperTest extends \PHPUnit_Framework_TestCase
 
     public function testDocument()
     {
-        $this->assertNull($this->wrapper->getDocument());
+        $this->assertInternalType('array', $this->wrapper->getDocument());
         $filePath = __DIR__.'/../File/test.pdf';
         $doc = new Document('test.pdf', $filePath);
         $this->wrapper->addDocument($doc);
-        $this->assertInternalType('array', $this->wrapper->getDocument());
         $this->assertEquals(1, count($this->wrapper->getDocument()));
         $this->assertInstanceOf('Funstaff\Tika\Document', $this->wrapper->getDocument('test.pdf'));
         $doc = new Document('test2.pdf', $filePath);
