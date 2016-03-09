@@ -21,24 +21,36 @@ use Symfony\Component\Process\Process;
  */
 class Wrapper implements WrapperInterface
 {
+    /**
+     * @var LoggerInterface
+     */
     protected $logger;
+
+    /**
+     * @var ConfigurationInterface
+     */
     protected $config;
+
+    /**
+     * @var array
+     */
     protected $document;
 
     /**
      * Constructor
      *
-     * @param Funstaff\Tika\ConfigurationInterface $config
+     * @param ConfigurationInterface $config
      */
     public function __construct(ConfigurationInterface $config)
     {
         $this->config = $config;
+        $this->document = array();
     }
 
     /**
      * Get Configuration
      *
-     * @return Funstaff\Tika\ConfigurationInterface
+     * @return ConfigurationInterface
      */
     public function getConfiguration()
     {
@@ -62,7 +74,7 @@ class Wrapper implements WrapperInterface
      * @param string $name  configuration parameter
      * @param string $value
      *
-     * @return Funstaff\Tika\Wrapper
+     * @return Wrapper
      */
     public function setParameter($name, $value)
     {
@@ -84,9 +96,9 @@ class Wrapper implements WrapperInterface
     /**
      * Add document
      *
-     * @param Funstaff\Tika\DocumentInterface
+     * @param DocumentInterface
      *
-     * @return Funstaff\Tika\Wrapper
+     * @return Wrapper
      */
     public function addDocument(DocumentInterface $doc)
     {
@@ -121,12 +133,13 @@ class Wrapper implements WrapperInterface
     /**
      * Execute
      *
-     * @return Funstaff\Tika\Wrapper
+     * @return Wrapper
      */
     public function execute()
     {
         $base = $this->generateCommand();
         foreach ($this->document as $name => $doc) {
+            /* @var $doc Document */
             if ($doc->getPassword()) {
                 $command = sprintf(
                             '%s --password=%s',
@@ -177,7 +190,7 @@ class Wrapper implements WrapperInterface
     {
         $java = $this->config->getJavaBinaryPath() ? : 'java';
         $command = sprintf(
-            '%s -jar %s',
+            '%s -Djava.awt.headless=true -jar %s',
             $java,
             $this->config->getTikaBinaryPath()
         );
@@ -211,8 +224,10 @@ class Wrapper implements WrapperInterface
         $metas = $dom->getElementsByTagName('meta');
         if ($metas) {
             $class = $this->config->getMetadataClass();
+            /* @var $metadata MetadataInterface */
             $metadata = new $class();
             foreach ($metas as $meta) {
+                /* @var $meta \DOMElement */
                 $name = $meta->getAttribute('name');
                 $value = $meta->getAttribute('content');
                 $metadata->add($name, $value);
@@ -229,10 +244,13 @@ class Wrapper implements WrapperInterface
 
     /**
      * load Metadata
+     * @param Document $doc
+     * @param string $content
      */
     private function loadMetadata($doc, $content)
     {
         $class = $this->config->getMetadataClass();
+        /* @var $metadata MetadataInterface */
         $metadata = new $class();
 
         $metadatas = get_object_vars(json_decode($content));
@@ -240,5 +258,17 @@ class Wrapper implements WrapperInterface
             $metadata->add($name, $value);
         }
         $doc->setMetadata($metadata);
+    }
+
+    /**
+     * Clear list of documents to process
+     *
+     * @return WrapperInterface
+     */
+    public function unsetDocuments()
+    {
+        $this->document = array();
+
+        return $this;
     }
 }

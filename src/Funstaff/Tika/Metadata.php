@@ -26,7 +26,7 @@ class Metadata implements MetadataInterface
      * @param string $name  name of single metadata
      * @param string $value metadata value
      *
-     * @return Funstaff\Tika\MetadataInterface
+     * @return MetadataInterface
      */
     public function add($name, $value)
     {
